@@ -1,0 +1,199 @@
+# Careers URLs supplied 2026-09-15. Kept so the work is not lost and so a
+# rerun can pick up anything that later starts working.
+#
+# WORKING lines are already in companies.csv.
+# Everything else records why the supplied URL did not yield a board.
+
+
+# ================= 2026-09-15 FIRECRAWL AUDIT =================
+# Rendered 24 of the failing URLs in a real browser. Most failures were NOT the
+# stated cause (JS rendering, 403, Cloudflare). The tenant simply does not
+# exist at that URL: the slugs were guessed. Re-diagnosed:
+#
+# TENANT DOES NOT EXIST (page says so explicitly):
+#   freshteam  Analyttica, Ati Motors, Storylane,
+#              Netcore Unbxd                          "We couldn't find <x>.freshteam.com"
+#   keka       Zemoso, Snapmint, StatusNeo, GIVA,
+#              IndusOS, MrMed, R360                   "Invalid Tenant" (not a 403)
+#   workable   NeevCloud                               404 (already fixed: keka/rackbank)
+#   zoho       Tricon Infotech                         "does not exist"
+#   workday    Carelon                                 community.workday.com/invalid-url
+#   -> Polymerize and Think Design (freshteam) untested; expect the same.
+#      Find the real slug by clicking Apply on the company's own site.
+#
+# MOVED PLATFORM (now in companies.csv):
+#   Dell Technologies  radancy -> oracle CX_1001 @ iawmqy.fa.ocs.oraclecloud.com
+#   Texas Instruments  radancy -> oracle CX @ edbz.fa.us2.oraclecloud.com
+#   Goldman Sachs      tal.net -> higher.gs.com (firecrawl row)
+#   Tesco              own site -> Avature careers.tesco.com (firecrawl row)
+#   Siemens            Avature jobs.siemens.com/en_US/externaljobs (firecrawl row)
+#   Flipkart           own site -> flipkart.turbohire.co (renders empty even
+#                      after 9s in a browser; unresolved)
+#
+# WORKS - the old diagnosis was wrong:
+#   keka       Newspace  public board, ~200 roles; added to companies.csv
+#
+# GENUINELY BLOCKED:
+#   keka       Blissclub, HiLabs  real 403 page: tenant exists, public
+#              careers portal is switched off. Nothing to scrape.
+#   workday    Wells Fargo  headless browser gets the "Workday unavailable" page.
+#              Workday rows must go through the cxs API, not Firecrawl.
+#   darwinbox  Myntra redirects to candidate login. Zepto loads via
+#              /ms/candidatev2/main/careers/allJobs but lists only FM ops,
+#              FMCG and real estate roles: no tech hiring there.
+
+# ================= WORKING =================
+AMETEK | https://jobs.ametek.com/search/?q=&locationsearch=India
+Avolta | https://careers.avoltaworld.com/search/?createNewAlert=false&q=&locationsearch=India
+JioStar | https://disney.wd5.myworkdayjobs.com/disneycareer?locations=5db6f40449411000bda8457224f80000
+SatSure | https://satsure.keka.com/careers/
+Shipthis | https://shipthis.freshteam.com/jobs
+
+# ===== ashby: board page loads but posting-api returns 404 - private board.
+# Gale | https://jobs.ashbyhq.com/gale
+# Transak | https://jobs.ashbyhq.com/transak
+# Xflow | https://jobs.ashbyhq.com/xflow
+
+# ===== bespoke: bespoke site - no adapter.
+# BNP Paribas | https://group.bnpparibas/en/careers/job-offers?country=India
+# Blackhawk | https://careers.blackhawknetwork.com/jobs?filter%5Bcountry%5D=India
+# Brillio | https://jobs.brillio.com/
+# Eli Lilly | https://careers.lilly.com/us/en/search-results?m=3&location=India
+# Flipkart | https://www.flipkartcareers.com/#!/joblist
+# GlobalLogic | https://www.globallogic.com/career-search-page/?country=india
+# HashedIn | https://hashedin.com/job-openings/
+# KPIT | https://kpitcareers.kpit.com/
+# Loginsoft | https://jobs.loginsoft.com/
+# Manipal Hospitals | https://careers.manipalhospitals.com/job-openings/
+# Nextwealth | https://nextwealth.in/current-openings/
+# Polestar Analytics | https://www.polestarllp.com/careers
+# STL Digital | https://www.stldigital.com/careers/#career-openings
+# Siemens | https://jobs.siemens.com/careers?query=India
+# Tesco | https://www.tesco-careers.com/search-and-apply/?location=Bengaluru
+# UnitedLayer | https://www.unitedlayer.com/current-openings/
+# Volvo | https://www.volvogroup.com/en/careers/job-search.html?country=India
+
+# ===== darwinbox: Cloudflare challenge on the jobs API.
+# Capillary Technologies | https://capillarytech.darwinbox.in/ms/candidate/careers
+# Myntra | https://myntra.darwinbox.in/ms/candidate/careers
+# Nykaa | https://nykaa.darwinbox.in/ms/candidate/careers
+# Urban Company | https://urbancompany.darwinbox.in/ms/candidate/careers
+# Zepto | https://zepto.darwinbox.in/ms/candidate/careers
+
+# ===== eightfold: network error reaching tenant from here.
+# Deutsche Bank | https://deutschebank.eightfold.ai/careers?location=India
+
+# ===== freshteam: job list is JS-rendered; served HTML has no postings.
+# Analyttica | https://analyttica.freshteam.com/jobs
+# Ati Motors | https://atimotors.freshteam.com/jobs
+# Netcore Unbxd | https://unbxd.freshteam.com/jobs
+# Polymerize | https://polymerize.freshteam.com/jobs
+# Storylane | https://storylane.freshteam.com/jobs
+# Think Design | https://thinkdesign.freshteam.com/jobs
+
+# ===== keka: keka redirects to /careers/Content/403.html - tenant blocks automated reads.
+# Blissclub | https://blissclub.keka.com/careers/
+# GIVA | https://giva.keka.com/careers
+# HiLabs | https://hilabs.keka.com/careers/
+# Indus DC Ventures | https://indusos.keka.com/careers/
+# MrMed | https://mrmed.keka.com/careers/
+# Newspace | https://newspace.keka.com/careers/
+# R360 | https://r360.keka.com/careers/
+# Snapmint | https://snapmint.keka.com/careers/
+# StatusNeo | https://statusneo.keka.com/careers/
+# Zemoso | https://zemoso.keka.com/careers/
+
+# ===== lever: jobs.lever.co/<slug> returns Lever's own 404 page - that board does not exist. Company likely moved off Lever.
+# Ather | https://jobs.lever.co/atherenergy
+# ClearTax | https://jobs.lever.co/cleartax
+# FinBox | https://jobs.lever.co/finbox
+# Hiver | https://jobs.lever.co/hiverhq
+# PhonePe | https://jobs.lever.co/phonepe
+# SoundHound | https://jobs.lever.co/soundhound
+# Testsigma | https://jobs.lever.co/testsigma
+# Uni Cards | https://jobs.lever.co/uni
+# o9 Solutions | https://jobs.lever.co/o9solutions
+
+# ===== radancy: Radancy/SelectMinds - no adapter.
+# Akamai | https://akamai.referrals.selectminds.com/jobs/search/in/india
+# Dell Technologies | https://jobs.dell.com/en/search-jobs/India/375/2/1269750/20/77/50/2
+# Fastenal | https://careers.fastenal.com/search-jobs/India/18858/2/1269750/20/77/50/2
+# Texas Instruments | https://careers.ti.com/search-jobs/?location=India
+
+# ===== smartrecruiters: board resolves but has no India roles.
+# Epsilon | https://jobs.smartrecruiters.com/PublicisGroupe/Epsilon
+
+# ===== successfactors: proxy error reaching host from here.
+# Anheuser-Busch | https://jobs.abinbev.com/search/?createNewAlert=false&q=&locationsearch=India
+
+# ===== talnet: tal.net platform - no adapter.
+# Goldman Sachs | https://goldmansachs.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-2/xf-d0554c0cfb6c/candidate/jobboard/vacancy/1/adv/
+# Morgan Stanley | https://morganstanley.tal.net/vx/lang-en-GB/mobile-0/brand-2/candidate/jobboard/vacancy/1/adv/
+
+# ===== workable: unknown
+# NeevCloud | https://apply.workable.com/neevcloud/
+
+# ===== workday: cxs tenant differs from the subdomain - 422 on every body shape. Need the /wday/cxs/<TENANT>/<SITE>/jobs path from DevTools Network.
+# 7-Eleven | https://7eleven.wd5.myworkdayjobs.com/7ElevenCareers?locations=19036c84d7a81014e2d31215b2480000
+# Apexon | https://apexon.wd1.myworkdayjobs.com/Apexon_Careers?locations=d186cbbd377b01934ba74ef43d395724
+# Carelon | https://elevancehealth.wd1.myworkdayjobs.com/Carelon_Global_Solutions_India
+# NAVEX | https://navex.wd1.myworkdayjobs.com/NAVEXCareers?q=India
+# Omnissa | https://omnissa.wd5.myworkdayjobs.com/OmnissaCareers?q=India
+# Smiths Detection | https://smithsdetection.wd3.myworkdayjobs.com/Smiths_Detection_Careers?q=India
+# Syngene | https://syngene.wd3.myworkdayjobs.com/Syngene_Careers
+# Wells Fargo | https://wellsfargo.wd1.myworkdayjobs.com/WellsFargoJobs?q=India
+
+# ===== zohorecruit: Zoho Recruit - no adapter.
+# Tricon Infotech | https://triconinfotech.zohorecruit.com/jobs/Careers
+
+
+# ================= 2026-10-01 IT SERVICES FIRMS =================
+# Sources read out of each careers app's JavaScript and verified live. The
+# WORKING ones are in companies.csv under "2026-10-01: IT services firms".
+#
+# WORKING
+#   TCS            ibegin.tcsapps.com (ibegin.tcs.com no longer resolves);
+#                  POST /candidate/api/v1/jobs/searchJ after PUT
+#                  /api/v1/current/country/IN/EN/1 - the feed is US-only otherwise
+#   Infosys        intapgateway.infosysapps.com/careersci/search/intapjbsrch/
+#                  getCareerSearchJobs?sourceId=1,21&searchText=ALL (from
+#                  assets/environments/environment.json, JobsUnAuthUrl)
+#   Wipro, HCLTech SuccessFactors CSB: POST /services/recruiting/v1/jobs with the
+#                  page's CSRFToken. HCLTech filters by facet custCountryRegion.
+#   Persistent, Coforge, Cyient   Zwayam: POST public.zwayam.com/jobs/search,
+#                  companyId = COMPANYID from the site's main.js, TenantGroupId G1
+#   LTIMindtree, Mphasis, Altimetrik, Tata Technologies   RippleHire:
+#                  POST /candidate/candidatejobsearch, careerSiteUrlParams JSON
+#   Capgemini      cg-jobstream-api.azurewebsites.net/api/job-search?country_code=in-en
+#   Hexaware, Zensar, EXL, KPMG   Oracle HCM (tenants in companies.csv)
+#   Birlasoft, EY, Atos           SuccessFactors classic
+#   NTT DATA       Phenom front end; the apply links name Workday nttlimited.wd3
+#   DXC            Workday dxctechnology.wd1 / DXCJobs
+#   Quest Global, Eli Lilly       Phenom /widgets
+#
+# RESOLVED 2026-10-01 (second pass) - see companies.csv
+#   Cognizant       /india-en/jobs/xml/?rss=true: Indeed-style feed of all jobs.
+#                   Plain requests from Actions get it; only headless browsers
+#                   and this sandbox are challenged.
+#   Tech Mahindra   WebForms postbacks (techmahindra adapter)
+#   Deloitte India  Avature usijobs.deloitte.com (avature adapter)
+#   Publicis        iCIMS Jibe careers.publicisgroupe.com/api/jobs (jibe adapter)
+#   UST             RippleHire usource.ripplehire.com
+#   Virtusa         Oracle SelectMinds virtusapolaris.referrals.selectminds.com
+#   Unisys          Workday unisys.wd5 / External
+#   Mastek          SuccessFactors careers.mastek.com
+#   Brillio         jobs.brillio.com no longer resolves; Lever brillio-2
+#
+# NOT COVERED (as of the second pass)
+#   EPAM India      careers.epam.in: "Cloudflare: WAF block" from Actions too,
+#                   real browser included - a network policy, not a bot check.
+#                   (careers.epam.com's API works but lists no India roles.)
+#   GlobalLogic     the page's own admin-ajax job search 403s from Actions,
+#                   in a real browser too.
+#   Happiest Minds  smileshrms.darwinbox.com behind Cloudflare Turnstile.
+#   KPIT            kpit.com/job-listing/?show_all=1 renders in a real browser
+#                   (TalentOjo ATS behind it, no public list API found); needs
+#                   Playwright in CI.
+#   Sasken (HireWand), ValueLabs (AiDE Recruit), Cybage (own pages), CGI (njoyn),
+#   Movate, Mu Sigma, Sonata, LTTS, Tata Elxsi, Hitachi Vantara - not attempted
+#   past the careers page; each would be one-off work.

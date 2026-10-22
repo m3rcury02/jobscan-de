@@ -1,0 +1,133 @@
+name: jobscan-de
+
+on:
+  schedule:
+    # Hourly, at :47 - half an hour off the SDE scanner's :17, so the two
+    # repos are not polling the same boards at once (two overlapping polls
+    # from one IP drew 429s from Workable and Workday, 2026-10-22). Set the
+    # external trigger to :47 too. A backup only: GitHub drops most scheduled runs
+    # whatever the minute (the SDE repo saw "17 *" fire twice in 14 hours,
+    # 2026-10-06/07). An external hourly trigger of workflow_dispatch is the
+    # real schedule - see README "Hourly runs".
+    - cron: "47 * * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to run"
+        type: choice
+        required: true
+        default: scan
+        options:
+          - scan
+          - backlog
+          - discover
+          - diagnose
+          - prune
+          - dry-run
+          - applied
+      max_age:
+        description: "Only roles posted within N days (scan/dry-run only)"
+        type: string
+        required: false
+        default: "2"
+      url:
+        description: "applied mode: the posting URL you applied to"
+        type: string
+        required: false
+      status:
+        description: "applied mode: where it stands"
+        type: choice
+        required: false
+        default: applied
+        options:
+          - applied
+          - referred
+          - interview
+          - rejected
+          - offer
+          - withdrawn
+
+permissions:
+  contents: write
+
+# One run at a time. Two overlapping runs (a manual dispatch landing on the
+# cron) each rewrite seen.json from the same base, and the loser's push fails.
+concurrency:
+  group: jobscan-de
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    # A run killed before "Commit state" repeats the same work next hour, so
+    # leave room: ~9 min scan (~1,400 JDs after a big board change), up to 25
+    # min of xhigh resumes, and one straggling 15 min call. Minutes are free
+    # on a public repo.
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          RESUME_PACKET: ${{ secrets.RESUME_PACKET }}
+        run: |
+          pip install requests anthropic
+          # Resumes through your Claude subscription need the Claude Code CLI;
+          # an API key does not (see resumes.py). A failed install costs this
+          # run its resumes, never the scan.
+          if [ -n "$RESUME_PACKET" ] && [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$ANTHROPIC_API_KEY" ]; then
+            npm install -g @anthropic-ai/claude-code \
+              || echo "::warning::Claude Code CLI install failed; no resumes this run"
+          fi
+
+      - name: Run
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          # Tailored resumes for APPLY FIRST roles (resumes.py). Off until
+          # RESUME_PACKET, RESUME_INSTRUCTIONS and one of the two auth secrets exist.
+          RESUME_PACKET: ${{ secrets.RESUME_PACKET }}
+          RESUME_INSTRUCTIONS: ${{ secrets.RESUME_INSTRUCTIONS }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          RESUME_MODEL: ${{ vars.RESUME_MODEL }}
+          RESUME_EFFORT: ${{ vars.RESUME_EFFORT }}
+          RESUME_MAX: ${{ vars.RESUME_MAX }}
+          MODE: ${{ github.event.inputs.mode || 'scan' }}
+          MAX_AGE: ${{ github.event.inputs.max_age || '2' }}
+          URL: ${{ github.event.inputs.url }}
+          STATUS: ${{ github.event.inputs.status || 'applied' }}
+        run: |
+          case "$MODE" in
+            backlog)  python jobscan.py --repair-seen && python jobscan.py --backlog ;;
+            discover) python discover.py ;;
+            diagnose) python jobscan.py --diagnose ;;
+            prune)    python jobscan.py --prune ;;
+            dry-run)  python jobscan.py --dry-run --max-age "$MAX_AGE" ;;
+            applied)  python jobscan.py --applied "$URL" --status "$STATUS" ;;
+            *)        python jobscan.py --max-age "$MAX_AGE" ;;
+          esac
+
+      - name: Commit state
+        run: |
+          git config user.name  "jobscan-de"
+          git config user.email "jobscan-de@users.noreply.github.com"
+          # git add fails atomically: one missing pathspec stages nothing at
+          # all, and `|| true` hides that. discovered_review.csv only exists
+          # after a discover run, which silently cost a whole backlog's state.
+          git add -A
+          git diff --staged --quiet || git commit -m "$MODE $(date -u +%Y-%m-%d)"
+          # Anything you pushed while this ran (a companies.csv or applied.csv
+          # edit) would reject a bare push and lose this run's seen.json.
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push
+        env:
+          MODE: ${{ github.event.inputs.mode || 'scan' }}
