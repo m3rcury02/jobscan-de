@@ -197,10 +197,10 @@ def test_generic_titles_are_kept_only_when_the_jd_is_data_engineering():
     assert J.role_points(kept[0]["title"]) == 8      # below any DE title
 
 
-def test_this_repo_drops_roles_asking_three_years(monkeypatch):
-    # the shipped setting, not the pinned one: 0-2 years only, no stretch
-    monkeypatch.setattr(J, "YOE_STRETCH", 0)
-    assert J.band_fit((3, None)) == "over"
+def test_three_year_roles_are_stretch_and_four_are_dropped():
+    assert J.band_fit((3, None)) == "stretch"
+    assert J.band_fit((3, 5)) == "stretch"
+    assert J.band_fit((4, None)) == "over"
     assert J.band_fit((2, 5)) == "in-band"
     assert J.band_fit((0, 2)) == "in-band"
     assert J.band_fit((0, 1)) == "below"

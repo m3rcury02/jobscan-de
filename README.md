@@ -1,14 +1,14 @@
 # jobscan-de
 
 Polls company ATS boards every hour, filters to India-based **data engineering** roles whose
-stated experience band starts at 2 years or less (`MY_YOE` = 2, `YOE_STRETCH` = 0), fetches
-the full job description, scores it against your data engineering stack, and emails a digest
+stated experience band starts at 2 years or less, plus 3-year roles marked *stretch*
+(`MY_YOE` = 2, `YOE_STRETCH` = 1), fetches the full job description, scores it against your data engineering stack, and emails a digest
 that opens with the handful of roles to apply to first.
 
 The data engineering twin of [jobscan](https://github.com/m3rcury02/jobscan), which does the
-same for SDE roles. Same engine and adapters, 371 boards: jobscan's whole board list plus 22
-data-heavy employers added on 2026-10-22 (Tredence, Quantiphi, Blend360, Mastercard, Barclays,
-Target, Maersk, Experian, Snowflake, Tekion, dunnhumby and others). Roles at companies where you have a referral
+same for SDE roles. Same engine and adapters, 372 boards: jobscan's whole board list plus 23
+data-heavy employers added on 2026-10-22 (Tiger Analytics, Tredence, Quantiphi, Blend360,
+Mastercard, Barclays, Target, Maersk, Experian, Snowflake, Tekion, dunnhumby and others). Roles at companies where you have a referral
 are tagged *REFERRAL* and ranked up.
 
 No API keys for the job boards. All endpoints are public.
@@ -21,7 +21,6 @@ Only the profile and the filters. Everything that fetches boards is jobscan's co
 |---|---|---|
 | Titles | any engineering title: "developer", "software engineer", "SRE" ... | data engineering titles (`TITLE_KEEP`, plus ETL/ELT/DWH as words) |
 | Generic titles ("Software Engineer II", "Senior System Engineer") | kept | JD fetched, kept only if it scores `DE_JD_MIN_POINTS` (7) of data-specific skills; SQL, Python and AWS do not count |
-| Years | band includes 2; 3+ kept as *stretch* | band starts at 2 or below; 3+ dropped |
 | Skills | Java / Spring / AI banks | resume packet Section 6B: Strong 3, Working knowledge 2, adjacent 1 |
 | Gaps | Go, C++, Spark, Airflow ... | Azure, GCP, BigQuery, Kafka, Kinesis, streaming, Hadoop/Hive, Informatica, Power BI ... |
 | Role points (20%) | backend / AI titles highest | DE titles highest; roles on Azure or GCP rather than AWS get 6 of 20 |
@@ -61,9 +60,8 @@ score for DE roles. To stop the duplicates, drop "data engineer" from jobscan's 
    backup.
 
 `companies.csv` is already filled. To add a company, put its name in `wanted.txt` and run
-`discover` mode. `wanted.txt` holds the 49 data employers still uncovered on 2026-10-22, each
-with the reason. Tiger Analytics is the one most worth finishing, and it is one `curl` away (the
-file says how); the rest run Zoho Recruit, TurboHire, Jobvite, Taleo or a JavaScript-only page.
+`discover` mode. `wanted.txt` holds the 48 data employers still uncovered on 2026-10-22, each
+with the reason: most run Zoho Recruit, TurboHire, Jobvite, Taleo or a JavaScript-only page.
 
 ## Hourly runs
 
@@ -155,12 +153,13 @@ against a live poll of every board (52,969 roles, 27,304 in India) and the JDs o
 matching role posted in the last 30 days. The figures below are that month re-judged with the
 code as shipped.
 
-- `MY_YOE` / `YOE_STRETCH` - 2 and 0: a role is kept when the band its JD states starts at 2
-  years or less ("0-2", "1-3", "2-5", "2+"), and dropped when it asks 3+. A band you are past
-  ("0-1", "freshers only") is kept but ranked lower. **This is the setting that costs the most
-  roles.** Over the 30 days it dropped 367: 47 asking exactly 3 years, 37 asking 4, and 283
-  asking 5 or more. Of the 106 it kept, 31 stated a band you fit and 74 stated none.
-  `YOE_STRETCH = 1` would add the 47 three-year roles, marked *stretch*, as jobscan does.
+- `MY_YOE` / `YOE_STRETCH` - 2 and 1, as in jobscan: a role is kept when the band its JD
+  states starts at 2 years or less ("0-2", "1-3", "2-5", "2+"), kept and marked *stretch* when
+  it asks 3, and dropped when it asks 4+. A band you are past ("0-1", "freshers only") is kept
+  but ranked lower. **This is the setting that costs the most roles.** At 0 (0-2 years only),
+  the 30-day calibration dropped 367: 47 asking exactly 3 years, 37 asking 4, and 283 asking 5
+  or more; of the 106 it kept, 31 stated a band you fit and 74 stated none. Raising it to 1 on
+  2026-10-22 brought the 47 three-year roles back as stretch.
 - `HAS_MASTERS` - "Bachelor's + 7 years OR Master's + 4 years" is read on the Bachelor's
   route unless this is True. Left False as in jobscan. Your M.Tech Integrated is a Master's on
   paper; set it True if you are happy to apply on that route.
@@ -189,8 +188,8 @@ code as shipped.
 plus a few title-only ones. Most come from IT services firms and captives (Virtusa 22,
 Persistent 12, Infosys 11, EXL 9, Capgemini 6); 44 were at referral companies, and 7 were
 generic titles that only the JD gate caught. Product companies post few data
-engineering roles at 0-2 years, which is the reason to finish Tiger Analytics and to look at
-the consultancies in `wanted.txt` by hand.
+engineering roles at 0-2 years, which is the reason to watch the analytics consultancies
+(Tiger Analytics, Tredence, Quantiphi) and to check the ones in `wanted.txt` by hand.
 
 ### How a role is judged
 
@@ -213,13 +212,13 @@ the consultancies in `wanted.txt` by hand.
    2 years", "Min 0 Max 2", "Experience Required: 0-2 Yrs", "6 months to 2 years",
    "0-24 months".
 5. Seniority: "Senior", "Sr", "III" and "Staff Engineer" titles are kept only when the JD
-   states a band you are in. Indian product companies do post
+   states a band you are in or one year short of. Indian product companies do post
    "Senior (2-4 yrs)", and Altimetrik's "Staff Engineer" is 2-5; without that evidence a
    senior title reads as 4-6+ years. Fresher / trainee / graduate / new-grad titles work
    the other way: kept only when the JD's band includes your years ("Trainee Data
    Engineer, 0-2 yrs"); the rest are campus programmes you have aged out of.
-6. Score: 50% weighted skill overlap, 30% years fit (in-band 30, unstated 18, below 15),
-   20% role type. Role type is 20 for a data engineering title, 16 for a warehouse or
+6. Score: 50% weighted skill overlap, 30% years fit (in-band 30, unstated 18, below 15,
+   stretch 12), 20% role type. Role type is 20 for a data engineering title, 16 for a warehouse or
    platform title, 12 for "SQL Developer", 8 for a generic title the JD proved, and 6 for a
    role on Azure or GCP rather than AWS (the title names one of them and not AWS, or the JD
    names them twice and never AWS). Deterministic and cheap. If it disagrees with your

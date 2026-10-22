@@ -82,12 +82,12 @@ SELECTMINDS_MAX = 700
 # Your years of experience. A role is judged on whether the band it states
 # includes this number - "0-2", "1-3", "2-4" and "2+" all do - not on a fixed window.
 MY_YOE = 2
-# Roles asking up to MY_YOE + this are kept but marked "stretch". 0 here: this
-# scanner is for roles that ask 0-2 years, so "3+ years" is dropped, not
-# stretched. The SDE scanner runs 1. Over a 30-day calibration (2026-10-22)
-# 0 dropped 47 DE roles asking exactly 3 years, against 31 kept with a band
-# you fit. Raise it to 1 to see those 3-year roles as stretch.
-YOE_STRETCH = 0
+# Roles asking up to MY_YOE + this are kept but marked "stretch". Anything
+# beyond is dropped: at 2 years, a "4+ years" req is an ATS knockout. Started
+# at 0 (roles asking 0-2 years only) and raised to 1 on 2026-10-22: over a
+# 30-day calibration, 0 dropped 47 DE roles asking exactly 3 years against
+# 31 kept with a band you fit. Stretch roles rank below in-band ones.
+YOE_STRETCH = 1
 # JDs often read "Bachelor's + 7 years OR Master's + 4 years". The Master's /
 # PhD alternatives are ignored unless you hold one. False, as in the SDE
 # scanner; your M.Tech Integrated is a Master's on paper, so True would also

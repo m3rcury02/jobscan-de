@@ -2,20 +2,10 @@
 # One per line: "Name", or "Name | referral" if someone there can refer you.
 #
 # Seeded 2026-10-22 with 71 employers that hire junior data engineers in India.
-# 20 resolved through discover (now in companies.csv), and Tredence and Barclays
-# by hand from their careers pages' own links. What is left, and why. The SDE
+# 20 resolved through discover (now in companies.csv), and Tredence, Barclays
+# and Tiger Analytics by hand from their careers pages' own links. What is
+# left, and why. The SDE
 # repo's wanted.txt (m3rcury02/jobscan) holds the referral list and its outcomes.
-
-# ---- board known, not yet added ----
-# Tiger Analytics: its openings page links ~160 roles to Workable short links
-# (apply.workable.com/j/...). The account slug is "tiger-analytics" or
-# "tigeranalytics": both answered 429 while a made-up slug answered 404, but
-# Workable rate-limited every read from the dev sandbox, so neither was
-# confirmed. From any other network:
-#   curl -s https://apply.workable.com/api/v1/widget/accounts/tiger-analytics | head -c 300
-# and add the slug that names Tiger Analytics as "Tiger Analytics,workable,<slug>,,".
-# The workable adapter brings full JDs and dates. A `custom` row does not:
-# on that page it read nav items as roles and labelled US roles as India.
 
 # ---- on an ATS with no adapter here ----
 # Zoho Recruit: Agilisium, LUMIQ, Ganit       TurboHire: Indium
