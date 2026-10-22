@@ -743,4 +743,6 @@ dentsu,workday,DAN_GLOBAL,dentsuaegis.wd3,"discovered; 101 India roles, ? matchi
 # --- added 2026-10-22 by hand from each careers page's own links, checked live ---
 Tredence,ripplehire,tredence,rzuz0vttMaz0VxxVzDiY,"RippleHire, from tredence.com/careers; ~55 roles, ~21 India; no posting dates",
 Barclays,workday,External_Career_Site_Barclays,barclays.wd3,"Workday, from search.jobs.barclays; ~19 India roles",
-Tiger Analytics,workable,tiger-analytics,,"Workable; ~160 roles on tigeranalytics.com/about-us/current-openings. Slug confirmed in a browser 2026-10-22 (the dev sandbox was rate-limited by Workable)",
+# Tiger Analytics' Workable account (tiger-analytics) is its North American board: 231 roles,
+# 0 that passed for India on the first backlog run (2026-10-22). India roles are on Zwayam.
+Tiger Analytics,zwayam,https://careers.tigeranalytics.com/tigeranalytics/,16201,"Zwayam (COMPANYID MTYyMDE= in main.js); ~113 India roles with JD, band and date",
