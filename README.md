@@ -26,6 +26,7 @@ Only the profile and the filters. Everything that fetches boards is jobscan's co
 | Gaps | Go, C++, Spark, Airflow ... | Azure, GCP, BigQuery, Kafka, Kinesis, streaming, Hadoop/Hive, Informatica, Power BI ... |
 | Role points (20%) | backend / AI titles highest | DE titles highest; roles on Azure or GCP rather than AWS get 6 of 20 |
 | Email subject | `Jobs <date>: ...` | `DE jobs <date>: ...` |
+| A run without SMTP secrets | prints the digest and still marks every role seen | prints the digest, saves nothing |
 
 **Porting a fix from jobscan.** Adapter and engine fixes land in jobscan first. The profile
 lives in four places in `jobscan.py`: the block from `MY_YOE` to `GAP_RE`, the block from
@@ -33,6 +34,10 @@ lives in four places in `jobscan.py`: the block from `MY_YOE` to `GAP_RE`, the b
 `other_cloud` / `role_points`. The JD gate is one `if` in `select()`, and the page adapters
 call `is_de_title` where jobscan reads `TITLE_KEEP`. Any other hunk in a jobscan diff applies
 here as is.
+
+The last row is a fix, not a profile choice: a scheduled run that fired before the secrets
+existed would have buried every role it found. It applies to jobscan unchanged (`run()`, the
+`dry_run or not smtp_configured()` branch).
 
 **The same role in both digests.** jobscan's `TITLE_KEEP` includes "data engineer", so a data
 engineering role reaches both inboxes, scored twice against different stacks. Trust this one's

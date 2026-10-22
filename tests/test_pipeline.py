@@ -204,3 +204,23 @@ def test_this_repo_drops_roles_asking_three_years(monkeypatch):
     assert J.band_fit((2, 5)) == "in-band"
     assert J.band_fit((0, 2)) == "in-band"
     assert J.band_fit((0, 1)) == "below"
+
+
+def test_a_run_without_smtp_marks_nothing_seen(monkeypatch, isolated):
+    # a scheduled run that fires before the repo secrets exist
+    monkeypatch.delenv("SMTP_USER", raising=False)
+    monkeypatch.delenv("SMTP_PASS", raising=False)
+    monkeypatch.setattr(J, "BOARD_HEALTH_JSON", isolated / "health.json")
+    job = {"title": "Data Engineer", "company": "Acme", "location": "Bengaluru",
+           "url": "https://x/1", "description": JD_OK, "posted": "", "age": 0,
+           "yoe_band": (2, 4), "yoe_fit": "in-band"}
+    J.score(job)
+    from collections import Counter
+    with patch.object(J, "load_companies", return_value=[]), \
+            patch.object(J, "poll_boards", return_value=([], 0)), \
+            patch.object(J, "select", return_value=([job], [], Counter())), \
+            patch.object(J, "send_email") as send:
+        J.run(dry_run=False, max_age=2)
+    assert not send.called
+    assert not (isolated / "seen.json").exists()
+    assert not (isolated / "pipeline.csv").exists()

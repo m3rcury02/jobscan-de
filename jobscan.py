@@ -2878,8 +2878,12 @@ def run(dry_run=False, reset=False, max_age=MAX_AGE_DAYS):
           f"{stats['senior_unproven']} senior without a band you fit, "
           f"{stats['not_de']} generic titles that are not DE).")
 
-    if dry_run:
-        print("\n--- DRY RUN ---\n")
+    if dry_run or not smtp_configured():
+        # Without SMTP nothing reaches you, so nothing may be marked seen: a
+        # scheduled run before the secrets exist would otherwise bury every
+        # role it found (README "seen.json is 'already emailed'").
+        print("\n--- DRY RUN ---\n" if dry_run else
+              "\n--- SMTP_USER/SMTP_PASS not set: nothing emailed, nothing saved ---\n")
         print(digest)
         return
 
