@@ -5,3 +5,4 @@
 2026-10-23T13:28:53.213532+05:30	Accenture	HTTPError: 429 Client Error: Too Many Requests for url: https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs
 2026-10-23T13:35:44.948077+05:30	LTIMindtree	ReadTimeout: HTTPSConnectionPool(host='ltimindtree.ripplehire.com', port=443): Read timed out. (read timeout=25)
 2026-10-23T19:22:15.776701+05:30	Accenture	HTTPError: 429 Client Error: Too Many Requests for url: https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs
+2026-10-24T00:16:29.523521+05:30	Accenture	HTTPError: 429 Client Error: Too Many Requests for url: https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs
