@@ -11,3 +11,4 @@
 2026-10-24T15:22:06.337685+05:30	NTT Global Data Centers	JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2026-10-24T15:22:06.337921+05:30	Omnissa	JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2026-10-24T19:45:05.836053+05:30	TCS	ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-10-24T23:15:43.404484+05:30	TCS	HTTPError: 404 Client Error: Not Found for url: https://ibegin.tcsapps.com/candidate/next/api/candidate
