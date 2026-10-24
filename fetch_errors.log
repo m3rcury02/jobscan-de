@@ -13,3 +13,4 @@
 2026-10-24T19:45:05.836053+05:30	TCS	ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
 2026-10-24T23:15:43.404484+05:30	TCS	HTTPError: 404 Client Error: Not Found for url: https://ibegin.tcsapps.com/candidate/next/api/candidate
 2026-10-25T01:28:16.675449+05:30	TCS	HTTPError: 404 Client Error: Not Found for url: https://ibegin.tcsapps.com/candidate/next/api/candidate
+2026-10-25T04:21:35.226240+05:30	TCS	HTTPError: 404 Client Error: Not Found for url: https://ibegin.tcsapps.com/candidate/next/api/candidate
