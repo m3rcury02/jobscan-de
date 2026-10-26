@@ -15,3 +15,4 @@
 2026-10-25T01:28:16.675449+05:30	TCS	HTTPError: 404 Client Error: Not Found for url: https://ibegin.tcsapps.com/candidate/next/api/candidate
 2026-10-25T04:21:35.226240+05:30	TCS	HTTPError: 404 Client Error: Not Found for url: https://ibegin.tcsapps.com/candidate/next/api/candidate
 2026-10-25T06:07:24.077003+05:30	Amadeus Labs	HTTPError: 503 Server Error: Service Unavailable for url: https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs
+2026-10-26T13:40:04.952255+05:30	SS&C Technologies	JSONDecodeError: Expecting value: line 1 column 1 (char 0)
