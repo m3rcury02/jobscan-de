@@ -23,3 +23,4 @@
 2026-10-27T11:18:34.545007+05:30	Atos	ConnectTimeout: HTTPSConnectionPool(host='jobs.atos.net', port=443): Max retries exceeded with url: /search/?q=&locationsearch=India&sortColumn=referencedate&sortDirection=desc&startrow=0 (Caused by ConnectTimeoutError(<HTTPSConnection(host='jobs.atos.net', port=443) at 0x7f6749f02ab0>, 'Connection to jobs.atos.net timed out. (connect timeout=25)'))
 2026-10-27T16:35:38.133770+05:30	MoveInSync	ReadTimeout: HTTPSConnectionPool(host='moveinsync.com', port=443): Read timed out. (read timeout=25)
 2026-10-27T22:24:25.568328+05:30	State Street	HTTPError: 502 Server Error: Bad Gateway for url: https://statestreet.wd1.myworkdayjobs.com/wday/cxs/statestreet/Global/jobs
+2026-10-28T12:00:21.447213+05:30	Tech Mahindra	ReadTimeout: HTTPSConnectionPool(host='careers.techmahindra.com', port=443): Read timed out. (read timeout=60)
