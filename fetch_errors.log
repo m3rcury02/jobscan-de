@@ -29,3 +29,4 @@
 2026-10-29T05:16:33.461000+05:30	Dell Technologies	JD fetch failed (ReadTimeout: HTTPSConnectionPool(host='iawmqy.fa.ocs.oraclecloud.com', port=443): Read timed out. (read timeout=25)); shown as title-only
 2026-10-29T22:44:50.325906+05:30	Tech Mahindra	ReadTimeout: HTTPSConnectionPool(host='careers.techmahindra.com', port=443): Read timed out. (read timeout=60)
 2026-10-30T14:34:08.785033+05:30	MoveInSync	ReadTimeout: HTTPSConnectionPool(host='moveinsync.com', port=443): Read timed out. (read timeout=25)
+2026-10-31T02:46:26.029376+05:30	Oracle	JD fetch failed (HTTPError: 500 Server Error: Internal Server Error for url: https://eeho.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?ex); shown as title-only
