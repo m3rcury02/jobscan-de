@@ -81,3 +81,4 @@
 2026-11-01T15:17:56.634151+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
 2026-11-01T22:26:02.831044+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
 2026-11-02T02:53:25.346987+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-02T06:34:32.542974+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
