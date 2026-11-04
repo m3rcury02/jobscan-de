@@ -93,3 +93,4 @@
 2026-11-04T05:13:57.982609+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
 2026-11-04T05:21:08.772425+05:30	AMETEK	JD fetch failed (ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))); shown as title-only
 2026-11-04T08:53:02.627330+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-04T17:07:53.308336+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
