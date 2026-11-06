@@ -103,3 +103,4 @@
 2026-11-06T17:17:23.152226+05:30	TCS	JD fetch failed (ConnectTimeout: HTTPSConnectionPool(host='ibegin.tcsapps.com', port=443): Max retries exceeded with url: /candidate/next/api/en-IN/job/desc/438055 (Caused by Co); shown as title-only
 2026-11-06T17:17:23.152359+05:30	Salesforce	JD fetch failed (HTTPError: 403 Client Error: Forbidden for url: https://salesforce.wd12.myworkdayjobs.com/wday/cxs/salesforce/External_Career_Site/job/India---Hyderabad/Softwar); shown as title-only
 2026-11-07T00:02:07.911179+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-07T05:04:08.212001+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
