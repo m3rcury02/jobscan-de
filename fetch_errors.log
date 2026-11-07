@@ -110,3 +110,5 @@
 2026-11-07T22:09:53.327849+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
 2026-11-07T22:10:04.399991+05:30	Smart Working Solutions	HTTPError: 502 Server Error: Bad Gateway for url: https://jobs.lever.co/smart-working-solutions
 2026-11-07T22:16:00.000553+05:30	TCS	HTTPError: 500 Server Error: Internal Server Error for url: https://ibegin.tcsapps.com/candidate/next/api/en-IN/search/jobs
+2026-11-08T02:03:55.206928+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-08T02:04:27.257643+05:30	NXP Semiconductors	JSONDecodeError: Expecting value: line 1 column 1 (char 0)
