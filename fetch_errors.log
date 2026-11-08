@@ -116,3 +116,5 @@
 2026-11-08T05:31:31.847016+05:30	NXP Semiconductors	HTTPError: 422 Client Error: Unprocessable Entity for url: https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs
 2026-11-08T05:37:53.610345+05:30	Wipro	HTTPError: 500 Server Error: 500 for url: https://careers.wipro.com/services/recruiting/v1/jobs
 2026-11-08T05:37:53.610469+05:30	HCLTech	HTTPError: 500 Server Error: 500 for url: https://careers.hcltech.com/services/recruiting/v1/jobs
+2026-11-08T12:15:16.527139+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-08T12:15:46.447578+05:30	NXP Semiconductors	HTTPError: 422 Client Error: Unprocessable Entity for url: https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs
