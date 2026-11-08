@@ -112,3 +112,7 @@
 2026-11-07T22:16:00.000553+05:30	TCS	HTTPError: 500 Server Error: Internal Server Error for url: https://ibegin.tcsapps.com/candidate/next/api/en-IN/search/jobs
 2026-11-08T02:03:55.206928+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
 2026-11-08T02:04:27.257643+05:30	NXP Semiconductors	JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-11-08T05:31:05.453493+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-08T05:31:31.847016+05:30	NXP Semiconductors	HTTPError: 422 Client Error: Unprocessable Entity for url: https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs
+2026-11-08T05:37:53.610345+05:30	Wipro	HTTPError: 500 Server Error: 500 for url: https://careers.wipro.com/services/recruiting/v1/jobs
+2026-11-08T05:37:53.610469+05:30	HCLTech	HTTPError: 500 Server Error: 500 for url: https://careers.hcltech.com/services/recruiting/v1/jobs
