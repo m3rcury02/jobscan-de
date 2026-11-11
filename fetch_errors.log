@@ -145,3 +145,6 @@
 2026-11-11T13:57:28.198845+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
 2026-11-11T13:57:55.911931+05:30	NXP Semiconductors	HTTPError: 422 Client Error: Unprocessable Entity for url: https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs
 2026-11-11T14:05:24.580924+05:30	Salesforce	JD fetch failed (HTTPError: 403 Client Error: Forbidden for url: https://salesforce.wd12.myworkdayjobs.com/wday/cxs/salesforce/External_Career_Site/job/India---Hyderabad/Softwar); shown as title-only
+2026-11-11T22:10:38.798277+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-11T22:11:08.417338+05:30	NXP Semiconductors	HTTPError: 422 Client Error: Unprocessable Entity for url: https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs
+2026-11-11T22:18:00.920904+05:30	Infosys	HTTPError: 503 Server Error: Service Unavailable for url: https://intapgateway.infosysapps.com/careersci/search/intapjbsrch/getCareerSearchJobs?sourceId=1,21&searchText=ALL
