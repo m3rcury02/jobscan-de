@@ -342,3 +342,14 @@
 2026-11-16T04:43:16.197939+05:30	NTT Global Data Centers	HTTPError: 429 Client Error: Too Many Requests for url: https://nttglobaldatacenters.wd501.myworkdayjobs.com/wday/cxs/nttglobaldatacenters/External/jobs
 2026-11-16T04:43:16.198165+05:30	Omnissa	HTTPError: 429 Client Error: Too Many Requests for url: https://omnissa.wd501.myworkdayjobs.com/wday/cxs/omnissa/omnissa_External_Career_Site/jobs
 2026-11-16T04:48:18.651003+05:30	Virtusa	HTTPError: 503 Server Error: Service Unavailable for url: https://virtusapolaris.referrals.selectminds.com/jobs/search
+2026-11-16T08:45:25.375086+05:30	Salesforce	HTTPError: 429 Client Error: Too Many Requests for url: https://salesforce.wd12.myworkdayjobs.com/wday/cxs/salesforce/External_Career_Site/jobs
+2026-11-16T08:45:30.701118+05:30	Hyreo	HTTPError: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/hyreo/jobs?content=true
+2026-11-16T08:45:45.759914+05:30	Walmart Global Tech	HTTPError: 429 Client Error: Too Many Requests for url: https://walmart.wd504.myworkdayjobs.com/wday/cxs/walmart/WalmartExternal/jobs
+2026-11-16T08:45:45.760106+05:30	Veradigm	HTTPError: 429 Client Error: Too Many Requests for url: https://veradigm.wd12.myworkdayjobs.com/wday/cxs/veradigm/VR/jobs
+2026-11-16T08:45:45.760181+05:30	NXP Semiconductors	HTTPError: 422 Client Error: Unprocessable Entity for url: https://nxp.wd3.myworkdayjobs.com/wday/cxs/nxp/careers/jobs
+2026-11-16T08:45:45.760599+05:30	Accenture	HTTPError: 429 Client Error: Too Many Requests for url: https://accenture.wd103.myworkdayjobs.com/wday/cxs/accenture/AccentureCareers/jobs
+2026-11-16T08:46:10.711229+05:30	Amadeus Labs	HTTPError: 429 Client Error: Too Many Requests for url: https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs
+2026-11-16T08:46:10.788655+05:30	Genpact	HTTPError: 429 Client Error: Too Many Requests for url: https://genpact.wd108.myworkdayjobs.com/wday/cxs/genpact/External_Careers/jobs
+2026-11-16T08:46:10.788744+05:30	NTT Global Data Centers	HTTPError: 429 Client Error: Too Many Requests for url: https://nttglobaldatacenters.wd501.myworkdayjobs.com/wday/cxs/nttglobaldatacenters/External/jobs
+2026-11-16T08:46:10.788961+05:30	Omnissa	HTTPError: 429 Client Error: Too Many Requests for url: https://omnissa.wd501.myworkdayjobs.com/wday/cxs/omnissa/omnissa_External_Career_Site/jobs
+2026-11-16T08:51:10.705723+05:30	Virtusa	HTTPError: 503 Server Error: Service Unavailable for url: https://virtusapolaris.referrals.selectminds.com/jobs/search
